@@ -28,7 +28,7 @@
     <loc>https://przechoj.github.io/gips/reference/calculate_gamma_omega.html</loc>
   </url>
   <url>
-    <loc>https://przechoj.github.io/gips/reference/find_gips.html</loc>
+    <loc>https://przechoj.github.io/gips/reference/find_MAP.html</loc>
   </url>
   <url>
     <loc>https://przechoj.github.io/gips/reference/get_structure_constants.html</loc>
@@ -43,7 +43,7 @@
     <loc>https://przechoj.github.io/gips/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://przechoj.github.io/gips/reference/log_likelihood_of_gips.html</loc>
+    <loc>https://przechoj.github.io/gips/reference/log_posteriori_of_gips.html</loc>
   </url>
   <url>
     <loc>https://przechoj.github.io/gips/reference/plot.gips.html</loc>
