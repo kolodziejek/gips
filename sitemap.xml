@@ -19,7 +19,7 @@
     <loc>https://przechoj.github.io/gips/reference/G_function.html</loc>
   </url>
   <url>
-    <loc>https://przechoj.github.io/gips/reference/as.character.gips_perm.html</loc>
+    <loc>https://przechoj.github.io/gips/reference/as.character.html</loc>
   </url>
   <url>
     <loc>https://przechoj.github.io/gips/reference/calculate_gamma_function.html</loc>
@@ -62,5 +62,8 @@
   </url>
   <url>
     <loc>https://przechoj.github.io/gips/reference/runif_transposition.html</loc>
+  </url>
+  <url>
+    <loc>https://przechoj.github.io/gips/reference/validate_gips_perm.html</loc>
   </url>
 </urlset>

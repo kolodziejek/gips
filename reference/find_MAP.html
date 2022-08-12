@@ -60,30 +60,46 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>g</dt>
-<dd><p>object of <code>gips</code> class</p></dd>
+<dd><p>Object of <code>gips</code> class</p></dd>
 
 
 <dt>max_iter</dt>
-<dd><p>number of iterations for an algorithm to perform. At least 2. For <code>optimizer=="MH"</code> has to be finite; for <code>optimizer=="BG"</code>, can be infinite; for <code>optimizer=="BF"</code> it is not used.</p></dd>
+<dd><p>Number of iterations for an algorithm to perform. At least 2. For <code>optimizer=="MH"</code> has to be finite; for <code>optimizer=="HC"</code>, can be infinite; for <code>optimizer=="BF"</code> it is not used.</p></dd>
 
 
 <dt>return_probabilities</dt>
-<dd><p>boolean. TRUE can only be provided for <code>optimizer=="MH"</code>. Whether to use <code>Metropolis_Hastings()</code> results to calculate posterior probabilities.</p></dd>
+<dd><p>A boolean. TRUE can only be provided for <code>optimizer=="MH"</code>. Whether to use Metropolis-Hastings results to calculate posterior probabilities.</p></dd>
 
 
 <dt>show_progress_bar</dt>
-<dd><p>boolean. Indicate weather or not show the progress bar.</p></dd>
+<dd><p>A boolean. Indicate weather or not show the progress bar.</p></dd>
 
 
 <dt>optimizer</dt>
-<dd><p>the optimizer for the search of the maximum posteriori. Currently the "MH" - Metropolis-Hastings algorithm, or "BG" - best growth algorithm, or "BF" - brute force algorithm, or "continue" to continue the optimization performed on the <code>g</code> object (see Examples). By default, NA that is changed into "MH" when <code>g</code> is unoptimized and "continue", when <code>g</code> is optimized. See #TODO(In "Details" explain: Metropolis_Hastings and best_growth and brute_force)</p></dd>
+<dd><p>The optimizer for the search of the maximum posteriori.</p><ul><li><p><code>"MH"</code> (the default for unoptimized <code>g</code>): Metropolis-Hastings</p></li>
+<li><p><code>"HC"</code>: Hill Climbing</p></li>
+<li><p><code>"BF"</code>: Brute Force</p></li>
+<li><p><code>"continue"</code> (the default for optimized <code>g</code>): the same as the <code>g</code> was optimized by (see Examples).</p></li>
+</ul><p>See "Possible algorithms to use as optimizers" section below.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>object of class gips</p>
+<p>Object of class gips.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="possible-algorithms-to-use-as-optimizers">Possible algorithms to use as optimizers<a class="anchor" aria-label="anchor" href="#possible-algorithms-to-use-as-optimizers"></a></h2>
+    
+
+<ul><li><p><code>"Metropolis_Hastings"</code>, <code>"MH"</code> - to use Metropolis-Hastings algorithm <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm" class="external-link">see Wikipedia</a></p></li>
+<li><p><code>"hill_climbing"</code>, <code>"HC"</code> - to use Metropolis-Hastings algorithm <a href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm" class="external-link">see Wikipedia</a></p></li>
+<li><p><code>"brute_force"</code>, <code>"BF"</code>, <code>"full"</code> - to use Brute Force algorithm that checks the whole permutation space of a given size. This algorithm will definitely find the Maximum A Posteriori Estimation, but is very computationally expensive for bigger space.</p></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="gips.html">gips()</a></code>, <code><a href="gips_perm.html">gips_perm()</a></code>, <code><a href="project_matrix.html">project_matrix()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -112,7 +128,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map</span> <span class="op">&lt;-</span> <span class="fu">find_MAP</span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"MH"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g_map</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The permutation () has log posteriori -2.5040262668851 which was found after 10 log_posteriori calculations.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The permutation () has log posteriori -5.43166338817087 which was found after 10 log_posteriori calculations.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map2</span> <span class="op">&lt;-</span> <span class="fu">find_MAP</span><span class="op">(</span><span class="va">g_map</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"continue"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -126,16 +142,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> The optimized `gips` object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (1,6,5,4,3,2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  (1,4)(2,3)(5,6)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4.696522</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -0.8428529</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> n0:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion, so the gips model based on the found permutation does exist.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -147,7 +163,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  720</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1.614501 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1.517012 secs</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
