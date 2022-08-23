@@ -57,7 +57,7 @@ by a cyclic group of permutations.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>S</dt>
-<dd><p>A matrix to be projected.</p></dd>
+<dd><p>A square matrix to be projected.</p></dd>
 
 
 <dt>perm</dt>
@@ -66,7 +66,9 @@ Either of <code>gips_perm</code> or <code><a href="https://rdrr.io/pkg/permutati
 
 
 <dt>precomputed_equal_indices</dt>
-<dd><p>Parameter used in internal calculations in case when the equal indices have already been calculated; If it is not the case, leave this parameter as <code>NULL</code> and those will be computed.</p></dd>
+<dd><p>Parameter used in internal calculations in
+case  when the equal indices have already been calculated; If it is not
+the case, leave this parameter as <code>NULL</code> and those will be computed.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -76,15 +78,54 @@ Either of <code>gips_perm</code> or <code><a href="https://rdrr.io/pkg/permutati
 <p>A projected matrix.</p>
     </div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>When <code>S</code> is the sample covariance matrix (output of <code>cov(X)</code> function, see
+examples), then <code>S</code> is the unbiased estimator of the covariance matrix.
+However, the maximum likelihood estimator of the covariance matrix is
+<code>S*(n-1)/(n)</code>. For more information, see <a href="https://en.wikipedia.org/wiki/Estimation_of_covariance_matrices" class="external-link">Wikipedia page for Estimation of covariance matrices</a>.</p>
+<p>The maximum likelihood estimator is different when one knows the covariance
+matrix is invariant under the permutation. This estimator will not only be
+symmetric, but will also have some more values in itself the same.
+The estimator will be invariant under the given permutation.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="find_MAP.html">find_MAP()</a></code>, <code><a href="gips_perm.html">gips_perm()</a></code></p></div>
+    <div class="dont-index"><p><a href="https://en.wikipedia.org/wiki/Estimation_of_covariance_matrices" class="external-link">Wikipedia - Estimation of covariance matrices</a>,
+<code><a href="find_MAP.html">find_MAP()</a></code>, <code><a href="gips_perm.html">gips_perm()</a></code>, <code><a href="plot.gips.html">plot.gips()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">gperm</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips_perm.html">gips_perm</a></span><span class="op">(</span><span class="fu">permutations</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/permutations/man/permutation.html" class="external-link">as.word</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>, <span class="fl">7</span><span class="op">)</span> <span class="co"># permutation (1,4)(2,3)(5)(6)(7)</span></span></span>
-<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">49</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">number_of_observations</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">7</span> <span class="op">*</span> <span class="va">number_of_observations</span><span class="op">)</span>, <span class="va">number_of_observations</span>, <span class="fl">7</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cov</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">projected_S</span> <span class="op">&lt;-</span> <span class="fu">project_matrix</span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">projected_S</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]        [,3]        [,4]        [,5]        [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.98153011  0.35026991  0.17523381 -0.43285678 -0.02690888 -0.18245224</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.35026991  1.10875173  0.13294754  0.17523381  0.29206022  0.02439614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.17523381  0.13294754  1.10875173  0.35026991  0.29206022  0.02439614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.43285678  0.17523381  0.35026991  0.98153011 -0.02690888 -0.18245224</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] -0.02690888  0.29206022  0.29206022 -0.02690888  1.93068005  0.70380475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] -0.18245224  0.02439614  0.02439614 -0.18245224  0.70380475  1.10249253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7,]  0.07036799 -0.26363075 -0.26363075  0.07036799 -0.70819271 -0.21237294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,7]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.07036799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.26363075</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.26363075</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.07036799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] -0.70819271</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] -0.21237294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7,]  1.42643514</span>
+<span class="r-in"><span><span class="co"># The value in [1,1] is the same as in [4,4]; also, [2,2] and [3,3];</span></span></span>
+<span class="r-in"><span>  <span class="co"># also [1,2] and [4,3]; also, [1,5] and [4,5]; and so on</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Plot the projected matrix:</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="va">number_of_observations</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>, type <span class="op">=</span> <span class="st">'heatmap'</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="project_matrix-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
