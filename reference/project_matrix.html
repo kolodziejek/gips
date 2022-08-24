@@ -110,13 +110,13 @@ even n = 1 will be enough.</p>
 <span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cov</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">projected_S</span> <span class="op">&lt;-</span> <span class="fu">project_matrix</span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">projected_S</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]        [,3]        [,4]       [,5]       [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.80191941 -0.05472853 -0.12265845  0.29095747  0.2929667 -0.2480090</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.05472853  0.56482501 -0.05868978 -0.12265845 -0.3371482  0.1768425</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.12265845 -0.05868978  0.56482501 -0.05472853 -0.3371482  0.1768425</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.29095747 -0.12265845 -0.05472853  0.80191941  0.2929667 -0.2480090</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.29296675 -0.33714821 -0.33714821  0.29296675  1.3363872 -0.2237205</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] -0.24800904  0.17684250  0.17684250 -0.24800904 -0.2237205  0.8519220</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]        [,3]        [,4]       [,5]        [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.91382611 -0.12868824 -0.03163315 -0.12698333 -0.1448474  0.15917805</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.12868824  0.80767294 -0.01407565 -0.03163315  0.1485868 -0.07996552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.03163315 -0.01407565  0.80767294 -0.12868824  0.1485868 -0.07996552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.12698333 -0.03163315 -0.12868824  0.91382611 -0.1448474  0.15917805</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] -0.14484735  0.14858680  0.14858680 -0.14484735  2.2625444  0.88567891</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,]  0.15917805 -0.07996552 -0.07996552  0.15917805  0.8856789  1.40914522</span>
 <span class="r-in"><span><span class="co"># The value in [1,1] is the same as in [4,4]; also, [2,2] and [3,3];</span></span></span>
 <span class="r-in"><span>  <span class="co"># also [1,2] and [4,3]; also, [1,5] and [4,5]; and so on</span></span></span>
 <span class="r-in"><span></span></span>
