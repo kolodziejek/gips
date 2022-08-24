@@ -49,7 +49,10 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for gips</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for summary.gips</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -61,19 +64,195 @@
 <dt>...</dt>
 <dd><p>Further arguments passed to or from other methods.</p></dd>
 
+
+<dt>x</dt>
+<dd><p>An object of class "summary.gips" to be printed</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
 <p>The function <code>summary.gips</code> computes and returns a list of summary
-statistics of the <code>gips</code> given in object. Those are: TODO()</p>
-    </div>
+statistics of the given <code>gips</code> object. Those are:</p><ul><li><p>For unoptimized <code>gips</code> object:</p><ol><li><p><code>optimized</code> - FALSE</p></li>
+<li><p><code>start_permutation</code> - the permutation this <code>gips</code> represents</p></li>
+<li><p><code>start_permutation_log_posteriori</code> - the log of the a posteriori
+value the start permutation have</p></li>
+<li><p><code>n0</code> - the minimal number of observations needed for
+a MAP Estimator of covariance matrix to exists</p></li>
+<li><p><code>S_matrix</code> - the underlying matrix; this is used to calculate
+the posteriori value</p></li>
+<li><p><code>number_of_observations</code> - the number of observations that
+was observed for the <code>S_matrix</code> to be calculated; this is
+used to calculate the posteriori value</p></li>
+<li><p><code>delta</code>, <code>D_matrix</code> - the parameters of the Bayesian method</p></li>
+</ol></li>
+<li><p>For optimized <code>gips</code> object:</p><ol><li><p><code>optimized</code> - TRUE</p></li>
+<li><p><code>found_permutation</code> - the permutation this <code>gips</code> represents;
+the visited permutation with the biggest a posteriori value</p></li>
+<li><p><code>found_permutation_log_posteriori</code> - the log of the a posteriori
+value the found permutation have</p></li>
+<li><p><code>start_permutation</code> - the original permutation this <code>gips</code>
+represented before optimization; the first visited permutation</p></li>
+<li><p><code>start_permutation_log_posteriori</code> - the log of the a posteriori
+value the start permutation have</p></li>
+<li><p><code>n0</code> - the minimal number of observations needed for
+a MAP Estimator of covariance matrix to exists</p></li>
+<li><p><code>S_matrix</code> - the underlying matrix; this is used to calculate
+the posteriori value</p></li>
+<li><p><code>number_of_observations</code> - the number of observations that
+was observed for the <code>S_matrix</code> to be calculated; this is
+used to calculate the posteriori value</p></li>
+<li><p><code>delta</code>, <code>D_matrix</code> - the parameters of the Bayesian method</p></li>
+<li><p><code>optimization_algorithm_used</code> - all used optimization algorithms
+in order (one could start optimization with "MH", and then
+do a "HC")</p></li>
+<li><p><code>did_converge</code> - boolean, did the last used algorithm converge</p></li>
+<li><p><code>number_of_log_posteriori_calls</code> - how many times was
+the <code><a href="log_posteriori_of_gips.html">log_posteriori_of_gips()</a></code> function called during
+the optimization</p></li>
+<li><p><code>full_optimization_time</code> - how long was the optimization process;
+sum of all optimization times (when there were multiple)</p></li>
+<li><p><code>log_posteriori_calls_after_best</code> - how many times was
+the <code><a href="log_posteriori_of_gips.html">log_posteriori_of_gips()</a></code> function called after
+the <code>found_permutation</code>; in other words, how long ago
+could the optimization be stopped and have the same result;
+if this value is small, consider running <code><a href="find_MAP.html">find_MAP()</a></code>
+one more time with <code>optimizer = "continue"</code></p></li>
+<li><p><code>acceptance_rate</code> - only interesting for <code>optimizer = "MH"</code>;
+how often was the algorithm accepting the change of permutation
+in an iteration</p></li>
+</ol></li>
+</ul></div>
+    <div class="section level2">
+    <h2 id="methods-by-generic-">Methods (by generic)<a class="anchor" aria-label="anchor" href="#methods-by-generic-"></a></h2>
+    
+<ul><li><p><code>print(summary.gips)</code>: Printing method for class "summary.gips".
+Prints every interesting information in a pleasant, human readable form</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="project_matrix.html">project_matrix()</a></code>, <code><a href="find_MAP.html">find_MAP()</a></code></p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">"MASS"</a></span><span class="op">)</span> <span class="co"># for mvrnorm()</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">perm_size</span> <span class="op">&lt;-</span> <span class="fl">6</span></span></span>
+<span class="r-in"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">perm_size</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">sigma_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span>, <span class="fl">0.8</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span>,</span></span>
+<span class="r-in"><span>  nrow <span class="op">=</span> <span class="va">perm_size</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span> <span class="co"># sigma is a matrix invariant under permutation (1,2,3,4,5,6)</span></span></span>
+<span class="r-in"><span><span class="va">number_of_observations</span> <span class="op">&lt;-</span> <span class="fl">13</span></span></span>
+<span class="r-in"><span><span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html" class="external-link">mvrnorm</a></span><span class="op">(</span><span class="va">number_of_observations</span>, mu <span class="op">=</span> <span class="va">mu</span>, Sigma <span class="op">=</span> <span class="va">sigma_matrix</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">Z</span><span class="op">)</span> <span class="op">/</span> <span class="va">number_of_observations</span> <span class="co"># the theoretical mean is 0</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="va">number_of_observations</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">g_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"MH"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">unclass</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">g_map</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $optimized</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] ()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation_log_posteriori</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.45898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] ()</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation_log_posteriori</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.45898</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $n0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $S_matrix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.8252570 0.6183236 0.6225599 0.3113027 0.5182361 0.5139998</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.6183236 0.6684622 0.6447945 0.3945583 0.3444197 0.3680873</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.6225599 0.6447945 0.9148866 0.5435348 0.5213002 0.2512081</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.3113027 0.3945583 0.5435348 0.4718836 0.3886280 0.2396515</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.5182361 0.3444197 0.5213002 0.3886280 0.5624445 0.3855640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.5139998 0.3680873 0.2512081 0.2396515 0.3855640 0.5024432</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $number_of_observations</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $delta</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $D_matrix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2] [,3] [,4] [,5] [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]    1    0    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]    0    1    0    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]    0    0    1    0    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]    0    0    0    1    0    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]    0    0    0    0    1    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,]    0    0    0    0    0    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $optimization_algorithm_used</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Metropolis_Hastings"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $did_converge</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $number_of_log_posteriori_calls</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $full_optimization_time</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.02195358 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $log_posteriori_calls_after_best</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $acceptance_rate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">g_map2</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"HC"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">g_map2</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The optimized `gips` object.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Permutation:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  (1,4)(2,5)(3,6)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5.926964</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n0:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion, so the gips model based on the found permutation does exist.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization algorithm:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  hill_climbing did converge</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of log_posteriori calls:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Optimization time:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.1178274 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori calls after the found permutation:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  27</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
