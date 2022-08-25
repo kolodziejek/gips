@@ -124,33 +124,33 @@ will be the MAP estimator of the covariance matrix.</p></li>
 <span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cov</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">projected_S</span> <span class="op">&lt;-</span> <span class="fu">project_matrix</span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">projected_S</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]        [,3]        [,4]        [,5]       [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.09533148  0.03664276 -0.18099370 -0.28815211 -0.02371088 -0.2587186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.03664276  0.77134962  0.20986558 -0.18099370 -0.21157064  0.4556469</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.18099370  0.20986558  0.77134962  0.03664276 -0.21157064  0.4556469</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.28815211 -0.18099370  0.03664276  1.09533148 -0.02371088 -0.2587186</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] -0.02371088 -0.21157064 -0.21157064 -0.02371088  1.36886673  0.4359605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] -0.25871857  0.45564688  0.45564688 -0.25871857  0.43596046  1.0429017</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]       [,3]        [,4]        [,5]       [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.76118701 -0.2769856 -0.4770641  0.33555930  0.06609557 0.06684042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.27698555  2.0915046 -0.5332246 -0.47706415 -0.22190927 0.38209344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.47706415 -0.5332246  2.0915046 -0.27698555 -0.22190927 0.38209344</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.33555930 -0.4770641 -0.2769856  0.76118701  0.06609557 0.06684042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.06609557 -0.2219093 -0.2219093  0.06609557  0.68374978 0.14421904</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,]  0.06684042  0.3820934  0.3820934  0.06684042  0.14421904 1.00702492</span>
 <span class="r-in"><span><span class="co"># The value in [1,1] is the same as in [4,4]; also, [2,2] and [3,3];</span></span></span>
 <span class="r-in"><span>  <span class="co"># also [1,2] and [4,3]; also, [1,5] and [4,5]; and so on</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Plot the projected matrix:</span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="va">number_of_observations</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>, type <span class="op">=</span> <span class="st">'heatmap'</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>, type <span class="op">=</span> <span class="st">"heatmap"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="project_matrix-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Find the MAP Estimator</span></span></span>
 <span class="r-in"><span><span class="va">g_MAP</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"MH"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">S_MAP</span> <span class="op">&lt;-</span> <span class="fu">project_matrix</span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">g_MAP</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">S_MAP</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]        [,3]        [,4]        [,5]        [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.02418843  0.02279837  0.02279837  0.05094932  0.05094932 -0.15007350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.02279837  1.02418843  0.02279837  0.05094932 -0.15007350  0.05094932</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.02279837  0.02279837  1.02418843 -0.15007350  0.05094932  0.05094932</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.05094932  0.05094932 -0.15007350  1.02418843  0.02279837  0.02279837</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.05094932 -0.15007350  0.05094932  0.02279837  1.02418843  0.02279837</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] -0.15007350  0.05094932  0.05094932  0.02279837  0.02279837  1.02418843</span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g_MAP</span>, type <span class="op">=</span> <span class="st">'heatmap'</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]       [,3]        [,4]        [,5]        [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.79543115  0.02526586 -0.2441941  0.02386713  0.02386713  0.02526586</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.02526586  0.79543115 -0.2441941  0.02526586  0.02386713  0.02386713</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.24419406 -0.24419406  3.4190021 -0.24419406 -0.24419406 -0.24419406</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.02386713  0.02526586 -0.2441941  0.79543115  0.02526586  0.02386713</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.02386713  0.02386713 -0.2441941  0.02526586  0.79543115  0.02526586</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,]  0.02526586  0.02386713 -0.2441941  0.02386713  0.02526586  0.79543115</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g_MAP</span>, type <span class="op">=</span> <span class="st">"heatmap"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="project_matrix-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>

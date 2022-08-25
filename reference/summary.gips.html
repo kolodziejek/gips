@@ -123,7 +123,8 @@ one more time with <code>optimizer = "continue"</code></p></li>
 how often was the algorithm accepting the change of permutation
 in an iteration</p></li>
 </ol></li>
-</ul></div>
+</ul><p><code>print.summary.gips</code> returns an invisible NULL.</p>
+    </div>
     <div class="section level2">
     <h2 id="methods-by-generic-">Methods (by generic)<a class="anchor" aria-label="anchor" href="#methods-by-generic-"></a></h2>
     
@@ -133,8 +134,12 @@ Prints every interesting information in a pleasant, human readable form</p></li>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index">
-<ul><li><p><code><a href="project_matrix.html">project_matrix()</a></code></p></li>
-<li><p><code><a href="find_MAP.html">find_MAP()</a></code> - Usually, the <code>summary.gips()</code> is called on the output of <code><a href="find_MAP.html">find_MAP()</a></code>.</p></li>
+<ul><li><p><code><a href="find_MAP.html">find_MAP()</a></code> - Usually, the <code>summary.gips()</code>
+is called on the output of <code><a href="find_MAP.html">find_MAP()</a></code>.</p></li>
+<li><p><code><a href="log_posteriori_of_gips.html">log_posteriori_of_gips()</a></code> - The function that
+calculates the likelihood of a permutation.</p></li>
+<li><p><code><a href="project_matrix.html">project_matrix()</a></code> - The function that can project
+the known matrix of the found permutations space.</p></li>
 </ul></div>
     </div>
 
@@ -167,28 +172,28 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] (14)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] ()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation_log_posteriori</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -10.86042</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6.788502</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] ()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation_log_posteriori</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -11.02973</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -6.788502</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $S_matrix</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.7219206 0.4629516 0.3804370 0.4675845 0.7265535 0.8090681</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.4629516 0.8128977 0.8027009 0.6706574 0.3207114 0.3309082</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.3804370 0.8027009 1.0639275 0.8855350 0.4632711 0.2020445</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.4675845 0.6706574 0.8855350 0.9994514 0.7963784 0.5815009</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.7265535 0.3207114 0.4632711 0.7963784 1.2022205 1.0596608</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.8090681 0.3309082 0.2020445 0.5815009 1.0596608 1.1885245</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]       [,2]      [,3]      [,4]       [,5]      [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.8686108 0.57589348 0.2550352 0.1200711 0.41278850 0.7336468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.5758935 0.69857939 0.3660650 0.2122846 0.08959872 0.4221132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.2550352 0.36606495 0.3762380 0.4302423 0.31921259 0.3090396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.1200711 0.21228464 0.4302423 0.8555971 0.76338356 0.5454259</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.4127885 0.08959872 0.3192126 0.7633836 1.08657333 0.8569595</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.7336468 0.42211317 0.3090396 0.5454259 0.85695948 0.9700331</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $number_of_observations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 13</span>
@@ -215,13 +220,13 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $full_optimization_time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01840925 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.02447319 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $log_posteriori_calls_after_best</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $acceptance_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map2</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"HC"</span><span class="op">)</span></span></span>
@@ -229,16 +234,16 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The optimized `gips` object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (1,4)(2,5)(3,6)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -3.512507</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -6.788502</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> n0:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion, so the gips model based on the found permutation does exist.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -247,13 +252,13 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  hill_climbing did converge</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of log_posteriori calls:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.1010227 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.02933097 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori calls after the found permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  15</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

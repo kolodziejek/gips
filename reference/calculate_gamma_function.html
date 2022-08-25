@@ -80,7 +80,7 @@ and is using the
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>Value of Gamma function.</p>
+<p>Returns the value of the Gamma function.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -103,11 +103,11 @@ with <code>calculate_gamma_function()</code>.</p></li>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">id_perm</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips_perm.html">gips_perm</a></span><span class="op">(</span><span class="fu">permutations</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/permutations/man/id.html" class="external-link">id</a></span>, <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">calculate_gamma_function</span><span class="op">(</span><span class="va">id_perm</span>, <span class="fl">0.5001</span><span class="op">)</span>  <span class="co"># 10.7...</span></span></span>
+<span class="r-in"><span><span class="fu">calculate_gamma_function</span><span class="op">(</span><span class="va">id_perm</span>, <span class="fl">0.5001</span><span class="op">)</span> <span class="co"># 10.7...</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.70139</span>
-<span class="r-in"><span><span class="fu">calculate_gamma_function</span><span class="op">(</span><span class="va">id_perm</span>, <span class="fl">0.50000001</span><span class="op">)</span>  <span class="co"># 19.9...</span></span></span>
+<span class="r-in"><span><span class="fu">calculate_gamma_function</span><span class="op">(</span><span class="va">id_perm</span>, <span class="fl">0.50000001</span><span class="op">)</span> <span class="co"># 19.9...</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 19.91198</span>
-<span class="r-in"><span><span class="fu">calculate_gamma_function</span><span class="op">(</span><span class="va">id_perm</span>, <span class="fl">0.500000000001</span><span class="op">)</span>  <span class="co"># 29.1...</span></span></span>
+<span class="r-in"><span><span class="fu">calculate_gamma_function</span><span class="op">(</span><span class="va">id_perm</span>, <span class="fl">0.500000000001</span><span class="op">)</span> <span class="co"># 29.1...</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29.12235</span>
 <span class="r-in"><span><span class="co"># calculate_gamma_function(id_perm, 0.5) # integral diverges; returns Inf and warning</span></span></span>
 </code></pre></div>
