@@ -94,7 +94,10 @@ The Annals of Statistics, 50(3) 1747-1774 June 2022.
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="project_matrix.html">project_matrix()</a></code></p></div>
+    <div class="dont-index">
+<ul><li><p><code><a href="project_matrix.html">project_matrix()</a></code> - A function used in examples
+to show the properties of <code>prepare_orthogonal_matrix()</code>.</p></li>
+</ul></div>
     </div>
 
     <div class="section level2">
@@ -108,12 +111,12 @@ The Annals of Statistics, 50(3) 1747-1774 June 2022.
 <span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="project_matrix.html">project_matrix</a></span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span>  <span class="co"># this matrix in invariant under gperm</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">U_g</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">U_g</span>  <span class="co"># the non-zeros only on diagonal and [1,2] and [2,1]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]         [,4]     [,5]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  4.269579e-01  2.076569e-01 -4.163336e-17 8.326673e-17 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  2.076569e-01  1.206690e+00 -3.469447e-17 2.775558e-17 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -5.551115e-17 -9.813078e-18  9.786364e-01 2.775558e-16 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  1.665335e-16  2.943923e-17  2.775558e-16 9.786364e-01 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00 0.000000e+00 1.593753</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]          [,4]      [,5]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.364674e+00 -5.856615e-01 -2.220446e-16  2.220446e-16 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -5.856615e-01  7.939374e-01  8.326673e-17 -8.326673e-17 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -1.665335e-16  5.887847e-17  5.784399e-01  1.942890e-16 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  1.387779e-16 -7.850462e-17  2.220446e-16  5.784399e-01 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 0.9728846</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

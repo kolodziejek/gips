@@ -132,7 +132,10 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="project_matrix.html">project_matrix()</a></code>, <code><a href="find_MAP.html">find_MAP()</a></code></p></div>
+    <div class="dont-index">
+<ul><li><p><code><a href="project_matrix.html">project_matrix()</a></code></p></li>
+<li><p><code><a href="find_MAP.html">find_MAP()</a></code> - Usually, the <code>summary.gips()</code> is called on the output of <code><a href="find_MAP.html">find_MAP()</a></code>.</p></li>
+</ul></div>
     </div>
 
     <div class="section level2">
@@ -151,7 +154,7 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-in"><span>    <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span>,</span></span>
 <span class="r-in"><span>  nrow <span class="op">=</span> <span class="va">perm_size</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span></span>
-<span class="r-in"><span><span class="op">)</span> <span class="co"># sigma is a matrix invariant under permutation (1,2,3,4,5,6)</span></span></span>
+<span class="r-in"><span><span class="op">)</span> <span class="co"># sigma_matrix is a matrix invariant under permutation (1,2,3,4,5,6)</span></span></span>
 <span class="r-in"><span><span class="va">number_of_observations</span> <span class="op">&lt;-</span> <span class="fl">13</span></span></span>
 <span class="r-in"><span><span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html" class="external-link">mvrnorm</a></span><span class="op">(</span><span class="va">number_of_observations</span>, mu <span class="op">=</span> <span class="va">mu</span>, Sigma <span class="op">=</span> <span class="va">sigma_matrix</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">Z</span><span class="op">)</span> <span class="op">/</span> <span class="va">number_of_observations</span> <span class="co"># the theoretical mean is 0</span></span></span>
@@ -164,28 +167,28 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] (25)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] ()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation_log_posteriori</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.407762</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -14.39926</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] ()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation_log_posteriori</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3.602239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -14.39926</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $S_matrix</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.7007206 0.4203184 0.1900245 0.2691776 0.5495798 0.7798737</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.4203184 0.8065830 0.3881847 0.4989865 0.1127220 0.5311202</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.1900245 0.3881847 0.4102238 0.4556873 0.2575270 0.2354879</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.2691776 0.4989865 0.4556873 0.6243145 0.3945056 0.4378049</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.5495798 0.1127220 0.2575270 0.3945056 0.8313635 0.6865584</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.7798737 0.5311202 0.2354879 0.4378049 0.6865584 0.9821906</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.5483436 1.6097168 1.3785018 0.6600516 0.5986783 0.8298933</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 1.6097168 1.9377711 1.6292495 0.8749993 0.5469449 0.8554666</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 1.3785018 1.6292495 2.0741102 1.5722698 1.3215222 0.8766615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.6600516 0.8749993 1.5722698 1.5173680 1.3024203 0.6051497</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.5986783 0.5469449 1.3215222 1.3024203 1.3541537 0.5795765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.8298933 0.8554666 0.8766615 0.6051497 0.5795765 0.5583815</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $number_of_observations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 13</span>
@@ -212,13 +215,13 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $full_optimization_time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01261926 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01719451 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $log_posteriori_calls_after_best</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $acceptance_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map2</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"HC"</span><span class="op">)</span></span></span>
@@ -226,16 +229,16 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The optimized `gips` object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (2,5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1.407762</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -14.39926</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> n0:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion, so the gips model based on the found permutation does exist.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -244,13 +247,13 @@ Prints every interesting information in a pleasant, human readable form</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  hill_climbing did converge</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of log_posteriori calls:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.04089737 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.02676654 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori calls after the found permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  22</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  15</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
