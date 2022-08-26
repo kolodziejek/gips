@@ -114,8 +114,8 @@
 <span>  <span class="co"># it is not a remarkably sensible assumption,</span></span>
 <span>  <span class="co"># but let's do it for the example.</span></span>
 <span></span>
-<span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">Z_scaled</span><span class="op">)</span></span>
-<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Z_scaled</span><span class="op">)</span>, was_mean_estimated <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span></span>
+<span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span>, was_mean_estimated <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g</span>, type <span class="op">=</span> <span class="st">'heatmap'</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_mean_unknown-1.png" width="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
