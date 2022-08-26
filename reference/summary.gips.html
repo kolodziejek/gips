@@ -85,7 +85,11 @@ the posteriori value</p></li>
 <li><p><code>number_of_observations</code> - the number of observations that
 were observed for the <code>S_matrix</code> to be calculated; this is
 used to calculate the posteriori value</p></li>
-<li><p><code>delta</code>, <code>D_matrix</code> - the parameters of the Bayesian method</p></li>
+<li><p><code>was_mean_estimated</code> - given by the user while creating the <code>gips</code> object:</p></li>
+</ol><ul><li><p>TRUE means the <code>S</code> parameter was output of <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">stats::cov()</a></code> function</p></li>
+<li><p>FALSE means the <code>S</code> parameter was calculated with
+<code>S = t(X) %*% X / number_of_observations</code></p></li>
+</ul><ol><li><p><code>delta</code>, <code>D_matrix</code> - the parameters of the Bayesian method</p></li>
 </ol></li>
 <li><p>For optimized <code>gips</code> object:</p><ol><li><p><code>optimized</code> - TRUE</p></li>
 <li><p><code>found_permutation</code> - the permutation this <code>gips</code> represents;
@@ -103,6 +107,10 @@ the posteriori value</p></li>
 <li><p><code>number_of_observations</code> - the number of observations that
 were observed for the <code>S_matrix</code> to be calculated; this is
 used to calculate the posteriori value</p></li>
+<li><p><code>was_mean_estimated</code> - given by the user while creating the <code>gips</code> object:</p><ul><li><p>TRUE means the <code>S</code> parameter was output of <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">stats::cov()</a></code> function</p></li>
+<li><p>FALSE means the <code>S</code> parameter was calculated with
+<code>S = t(X) %*% X / number_of_observations</code></p></li>
+</ul></li>
 <li><p><code>delta</code>, <code>D_matrix</code> - the parameters of the Bayesian method</p></li>
 <li><p><code>optimization_algorithm_used</code> - all used optimization algorithms
 in order (one could start optimization with "MH", and then
@@ -148,7 +156,7 @@ the known matrix of the found permutations space.</p></li>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="http://www.stats.ox.ac.uk/pub/MASS4/" class="external-link">"MASS"</a></span><span class="op">)</span> <span class="co"># for mvrnorm()</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">perm_size</span> <span class="op">&lt;-</span> <span class="fl">6</span></span></span>
-<span class="r-in"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">perm_size</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">6</span>, <span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span> <span class="co"># Assume we don't know the mean</span></span></span>
 <span class="r-in"><span><span class="va">sigma_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>,</span></span>
@@ -162,7 +170,7 @@ the known matrix of the found permutations space.</p></li>
 <span class="r-in"><span><span class="op">)</span> <span class="co"># sigma_matrix is a matrix invariant under permutation (1,2,3,4,5,6)</span></span></span>
 <span class="r-in"><span><span class="va">number_of_observations</span> <span class="op">&lt;-</span> <span class="fl">13</span></span></span>
 <span class="r-in"><span><span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html" class="external-link">mvrnorm</a></span><span class="op">(</span><span class="va">number_of_observations</span>, mu <span class="op">=</span> <span class="va">mu</span>, Sigma <span class="op">=</span> <span class="va">sigma_matrix</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">Z</span><span class="op">)</span> <span class="op">/</span> <span class="va">number_of_observations</span> <span class="co"># the theoretical mean is 0</span></span></span>
+<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cov</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="co"># Assume we have to estimate the mean</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="va">number_of_observations</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -172,31 +180,34 @@ the known matrix of the found permutations space.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] (25)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] (25)(36)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $found_permutation_log_posteriori</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -3.997782</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.9937688</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] ()</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $start_permutation_log_posteriori</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -5.543786</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -4.179061</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $S_matrix</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]      [,2]      [,3]      [,4]      [,5]      [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.9005472 0.6921638 0.6350534 0.2088202 0.4172037 0.4743140</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.6921638 0.7545077 0.7538007 0.4226742 0.3603303 0.3610373</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.6350534 0.7538007 1.0570621 0.6985680 0.5798207 0.2765593</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.2088202 0.4226742 0.6985680 0.7775113 0.5636573 0.2877636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.4172037 0.3603303 0.5798207 0.5636573 0.6205307 0.4010403</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.4743140 0.3610373 0.2765593 0.2877636 0.4010403 0.4855183</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]       [,2]        [,3]       [,4]       [,5]        [,6]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.31757397  0.2570817  0.07267822 0.07301739  0.1335096  0.31791313</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.25708174  0.6491392  0.34795466 0.26612011 -0.1259374  0.17524718</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.07267822  0.3479547  0.63250368 0.48392360  0.2086472 -0.07590186</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] 0.07301739  0.2661201  0.48392360 0.57298568  0.3798830  0.16207947</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] 0.13350962 -0.1259374  0.20864717 0.37988296  0.6393300  0.30474541</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] 0.31791313  0.1752472 -0.07590186 0.16207947  0.3047454  0.55589447</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $number_of_observations</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $was_mean_estimated</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $delta</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
@@ -220,13 +231,13 @@ the known matrix of the found permutations space.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $full_optimization_time</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01631522 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Time difference of 0.01859736 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $log_posteriori_calls_after_best</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $acceptance_rate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map2</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"HC"</span><span class="op">)</span></span></span>
@@ -237,15 +248,19 @@ the known matrix of the found permutations space.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  (1,4)(2,5)(3,6)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.3829361</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.9919596</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The mean in `S` was estimated.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Therefore, one degree of freedom was lost. There is 12 degrees of freedom left.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> n0:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion, so the gips model based on the found permutation does exist.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> so the gips model based on the found permutation does exist.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization algorithm:</span>
@@ -255,10 +270,14 @@ the known matrix of the found permutations space.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  61</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.09206605 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.1114113 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori calls after the found permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  27</span>
+<span class="r-in"><span><span class="co"># ================================================================================</span></span></span>
+<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, nrow <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">g</span><span class="op">)</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

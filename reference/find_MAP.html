@@ -154,7 +154,7 @@ of <code>find_MAP()</code> tries to find the argmax of.</p></li>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: MASS</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">perm_size</span> <span class="op">&lt;-</span> <span class="fl">6</span></span></span>
-<span class="r-in"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="va">perm_size</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">6</span>, <span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span><span class="op">)</span> <span class="co"># Assume we don't know the mean</span></span></span>
 <span class="r-in"><span><span class="va">sigma_matrix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="fl">1.0</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>,</span></span>
@@ -168,13 +168,13 @@ of <code>find_MAP()</code> tries to find the argmax of.</p></li>
 <span class="r-in"><span><span class="op">)</span> <span class="co"># sigma_matrix is a matrix invariant under permutation (1,2,3,4,5,6)</span></span></span>
 <span class="r-in"><span><span class="va">number_of_observations</span> <span class="op">&lt;-</span> <span class="fl">13</span></span></span>
 <span class="r-in"><span><span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu">MASS</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MASS/man/mvrnorm.html" class="external-link">mvrnorm</a></span><span class="op">(</span><span class="va">number_of_observations</span>, mu <span class="op">=</span> <span class="va">mu</span>, Sigma <span class="op">=</span> <span class="va">sigma_matrix</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">Z</span><span class="op">)</span> <span class="op">/</span> <span class="va">number_of_observations</span> <span class="co"># the theoretical mean is 0</span></span></span>
+<span class="r-in"><span><span class="va">S</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cov</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span> <span class="co"># Assume we have to estimate the mean</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="gips.html">gips</a></span><span class="op">(</span><span class="va">S</span>, <span class="va">number_of_observations</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map</span> <span class="op">&lt;-</span> <span class="fu">find_MAP</span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"MH"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g_map</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The permutation () has log posteriori -9.85853291113379 which was found after 10 log_posteriori calculations.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The permutation (1,6)(3,4) has log posteriori -1.85674639333808 which was found after 10 log_posteriori calculations.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map2</span> <span class="op">&lt;-</span> <span class="fu">find_MAP</span><span class="op">(</span><span class="va">g_map</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"continue"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -188,18 +188,22 @@ of <code>find_MAP()</code> tries to find the argmax of.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The optimized `gips` object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (1,2,3,4,5,6)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  (2,6)(3,5)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.7659062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1.710973</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> n0:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The mean in `S` was estimated.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Therefore, one degree of freedom was lost. There is 12 degrees of freedom left.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion, so the gips model based on the found permutation does exist.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n0:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations is bigger than n0 for this permutaion,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> so the gips model based on the found permutation does exist.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization algorithm:</span>
@@ -209,7 +213,7 @@ of <code>find_MAP()</code> tries to find the argmax of.</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  720</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1.396454 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  1.648253 secs</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
