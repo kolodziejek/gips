@@ -181,7 +181,7 @@
 <span><span class="va">g_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, show_progress_bar <span class="op">=</span> <span class="cn">TRUE</span>, optimizer <span class="op">=</span> <span class="st">"full"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ================================================================================</span></span>
 <span><span class="va">g_map</span></span>
-<span><span class="co">#&gt; The permutation (1,2,6,4,5,3) has log posteriori -5.63840470919283 which was found after 720 log_posteriori calculations.</span></span>
+<span><span class="co">#&gt; The permutation (1,2,3,4,5,6) was found after 720 log_posteriori calculations, is 2509.07979453551 times more likely than the starting,  permutation.</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">g_map</span><span class="op">)</span><span class="op">$</span><span class="va">n0</span></span>
 <span><span class="co">#&gt; [1] 1</span></span>
@@ -193,12 +193,12 @@
 <span>  <span class="co"># with the Maximum Likelihood estimator:</span></span>
 <span><span class="fu"><a href="reference/project_matrix.html">project_matrix</a></span><span class="op">(</span><span class="va">S</span>, <span class="va">g_map</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="co">#&gt;          [,1]     [,2]     [,3]     [,4]     [,5]     [,6]</span></span>
-<span><span class="co">#&gt; [1,] 1.626103 1.264264 1.264264 1.199515 1.561354 1.561354</span></span>
-<span><span class="co">#&gt; [2,] 1.264264 1.626103 1.561354 1.561354 1.199515 1.264264</span></span>
-<span><span class="co">#&gt; [3,] 1.264264 1.561354 1.626103 1.561354 1.264264 1.199515</span></span>
-<span><span class="co">#&gt; [4,] 1.199515 1.561354 1.561354 1.626103 1.264264 1.264264</span></span>
-<span><span class="co">#&gt; [5,] 1.561354 1.199515 1.264264 1.264264 1.626103 1.561354</span></span>
-<span><span class="co">#&gt; [6,] 1.561354 1.264264 1.199515 1.264264 1.561354 1.626103</span></span>
+<span><span class="co">#&gt; [1,] 2.502065 2.270992 2.051661 1.820588 2.051661 2.270992</span></span>
+<span><span class="co">#&gt; [2,] 2.270992 2.502065 2.270992 2.051661 1.820588 2.051661</span></span>
+<span><span class="co">#&gt; [3,] 2.051661 2.270992 2.502065 2.270992 2.051661 1.820588</span></span>
+<span><span class="co">#&gt; [4,] 1.820588 2.051661 2.270992 2.502065 2.270992 2.051661</span></span>
+<span><span class="co">#&gt; [5,] 2.051661 1.820588 2.051661 2.270992 2.502065 2.270992</span></span>
+<span><span class="co">#&gt; [6,] 2.270992 2.051661 1.820588 2.051661 2.270992 2.502065</span></span>
 <span></span>
 <span><span class="co"># Plot the found matrix:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g_map</span>, type <span class="op">=</span> <span class="st">"heatmap"</span><span class="op">)</span></span></code></pre></div>
