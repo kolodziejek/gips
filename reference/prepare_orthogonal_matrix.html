@@ -12,7 +12,7 @@ Theorem 1 from references."><!-- mathjax --><script src="https://cdnjs.cloudflar
     
     <a class="navbar-brand me-2" href="../index.html">gips</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,12 +117,12 @@ to show the properties of <code>prepare_orthogonal_matrix()</code>.</p></li>
 <span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="project_matrix.html">project_matrix</a></span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span> <span class="co"># this matrix in invariant under gperm</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">U_g</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">U_g</span> <span class="co"># the non-zeros only on diagonal and [1,2] and [2,1]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]         [,4]     [,5]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.035555e-01  3.038606e-03 -8.326673e-17 1.665335e-16 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  3.038606e-03  2.571208e-01 -3.252607e-19 4.336809e-19 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -1.110223e-16 -4.599880e-19  1.421031e+00 4.996004e-16 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  1.110223e-16  3.066587e-19  3.885781e-16 1.421031e+00 0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00 0.000000e+00 1.913911</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]          [,4]     [,5]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.871621e+00 -2.833730e-01 -2.775558e-16  2.220446e-16 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -2.833730e-01  5.940940e-01  4.163336e-17 -4.163336e-17 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -2.498002e-16  4.906539e-17  5.520222e-01  1.110223e-16 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  1.665335e-16 -3.925231e-17  1.387779e-16  5.520222e-01 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 1.553689</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
