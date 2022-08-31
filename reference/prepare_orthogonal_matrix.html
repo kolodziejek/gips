@@ -23,6 +23,12 @@ Theorem 1 from references."><!-- mathjax --><script src="https://cdnjs.cloudflar
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/Introduction.html">Introduction</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -111,12 +117,12 @@ to show the properties of <code>prepare_orthogonal_matrix()</code>.</p></li>
 <span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="project_matrix.html">project_matrix</a></span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span> <span class="co"># this matrix in invariant under gperm</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">U_g</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">U_g</span> <span class="co"># the non-zeros only on diagonal and [1,2] and [2,1]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]         [,4]      [,5]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  6.814227e-01  2.121600e-01 -8.326673e-17 1.110223e-16 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  2.121600e-01  7.656362e-01 -2.775558e-17 2.775558e-17 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -2.220446e-16 -9.813078e-18  1.369913e+00 3.885781e-16 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  2.220446e-16  2.943923e-17  3.330669e-16 1.369913e+00 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00 0.000000e+00 0.8905293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]         [,4]     [,5]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.035555e-01  3.038606e-03 -8.326673e-17 1.665335e-16 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  3.038606e-03  2.571208e-01 -3.252607e-19 4.336809e-19 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -1.110223e-16 -4.599880e-19  1.421031e+00 4.996004e-16 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  1.110223e-16  3.066587e-19  3.885781e-16 1.421031e+00 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00 0.000000e+00 1.913911</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
