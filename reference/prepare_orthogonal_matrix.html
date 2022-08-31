@@ -117,12 +117,12 @@ to show the properties of <code>prepare_orthogonal_matrix()</code>.</p></li>
 <span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="project_matrix.html">project_matrix</a></span><span class="op">(</span><span class="va">S</span>, perm <span class="op">=</span> <span class="va">gperm</span><span class="op">)</span> <span class="co"># this matrix in invariant under gperm</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">U_g</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">X</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">U_g</span> <span class="co"># the non-zeros only on diagonal and [1,2] and [2,1]</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]          [,4]      [,5]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  5.364222e-01 -7.503583e-02 -5.551115e-17  5.551115e-17 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -7.503583e-02  7.386332e-01  1.040834e-17 -1.040834e-17 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -5.551115e-17  9.813078e-18  1.161636e+00  2.775558e-16 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  5.551115e-17 -9.813078e-18  3.330669e-16  1.161636e+00 0.0000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00 0.8533729</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]          [,2]          [,3]         [,4]     [,5]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  8.902331e-01  7.656327e-01 -1.387779e-16 5.551115e-17 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  7.656327e-01  1.363310e+00 -1.110223e-16 1.110223e-16 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -5.551115e-17 -1.177569e-16  1.230224e+00 3.885781e-16 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  2.220446e-16  1.177569e-16  3.885781e-16 1.230224e+00 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.000000e+00  0.000000e+00  0.000000e+00 0.000000e+00 0.858112</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
