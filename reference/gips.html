@@ -18,7 +18,7 @@ function to do it. See examples below."><!-- mathjax --><script src="https://cdn
     
     <a class="navbar-brand me-2" href="../index.html">gips</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.2.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.3.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -217,19 +217,19 @@ a one-element list of a <code>gips_perm</code> object as the base object.</p></l
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g_map</span> <span class="op">&lt;-</span> <span class="fu"><a href="find_MAP.html">find_MAP</a></span><span class="op">(</span><span class="va">g</span>, max_iter <span class="op">=</span> <span class="fl">10</span>, show_progress_bar <span class="op">=</span> <span class="cn">FALSE</span>, optimizer <span class="op">=</span> <span class="st">"MH"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g_map</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The permutation (2,5) was found after 10 log_posteriori calculations, is 10.7960394427441 times more likely than the starting, () permutation.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The permutation (1,4) was found after 10 log_posteriori calculations, is 12.00128853496 times more likely than the starting, () permutation.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">g_map</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The optimized `gips` object.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  (2,5)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  (1,4)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -7.721345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -6.835446</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Times more likely than starting permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10.7960394427441</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12.00128853496</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of observations:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  13</span>
@@ -252,13 +252,13 @@ a one-element list of a <code>gips_perm</code> object as the base object.</p></l
 <span class="r-out co"><span class="r-pr">#&gt;</span>  10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization time:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.01997542 secs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.0251956 secs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Acceptance rate:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  0.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Log_posteriori calls after the found permutation:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"graphics"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">g_map</span>, type <span class="op">=</span> <span class="st">"both"</span>, logarithmic_x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
